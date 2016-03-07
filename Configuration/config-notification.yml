@@ -1,0 +1,21 @@
+version: 0.1
+log:
+  level: debug
+storage:
+    filesystem:
+        rootdirectory: /registry/storage
+http:
+    addr: localhost:5000
+    secret: asecretforlocaldevelopment
+    debug:
+        addr: localhost:5001
+
+notifications:
+    endpoints:
+      - name: Fanny
+        url: http://192.168.2.112:8000/event
+        headers:
+          Authorization: ["Bearer \u003can example token\u003e"]
+        timeout: 500ms
+        threshold: 5
+        backoff: 1s

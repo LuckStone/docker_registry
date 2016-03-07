@@ -1,0 +1,9 @@
+middleware:
+    storage:
+        - name: cloudfront
+          disabled: false
+          options:
+             baseurl: http://d111111abcdef8.cloudfront.net
+             privatekey: /path/to/asecret.pem
+             keypairid: asecret
+             duration: 60
