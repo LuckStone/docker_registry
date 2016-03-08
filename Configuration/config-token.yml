@@ -1,0 +1,27 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  cache:
+    blobdescriptor: redis
+  filesystem:
+    rootdirectory: /var/lib/registry
+http:
+  addr: :5000
+  secret: randomstringsecret
+
+tls:
+  certificate: /root/sslkeys/domain.crt
+  key: /root/sslkeys/domain.key
+
+auth:
+  token:
+    # realm表示我的auth server地址
+    realm: https://registry.tenxcloud.com:5001/auth
+    # service表示的registry的地址
+    service: test123.tenxcloud.com:5000
+    # issuer是一串标示符，随便写一下，auth server加密的时候也需要配置同样的字符串。
+    issuer: qwertyui
+    # rootcertbundle配置一个秘钥，对token进行加密。
+    rootcertbundle: /root/sslkeys/domain.crt
