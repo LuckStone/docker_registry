@@ -1,0 +1,28 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+    cache:
+        blobdescriptor: inmemory
+    filesystem:
+        rootdirectory: /var/lib/registry
+http:
+    addr: :5000
+    headers:
+        X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+
+notifications:
+    endpoints:
+      - name: Fanny
+        url: http://192.168.2.112:8080/event
+        headers:
+          Authorization: ["Bearer \u003can example token\u003e"]
+        timeout: 500ms
+        threshold: 5
+        backoff: 1s
