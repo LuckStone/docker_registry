@@ -1,0 +1,17 @@
+FROM busybox
+
+EXPOSE 5002
+
+ENV SOURCE_DIR /root/source
+
+ENV START_SCRIPT /root/start_auth_server.sh
+
+RUN mkdir -p  $SOURCE_DIR
+
+ADD auth_server $SOURCE_DIR
+
+ADD start_auth_server.sh $START_SCRIPT
+
+VOLUME ["/tmp/data"] 
+
+CMD $START_SCRIPT
